@@ -1,0 +1,77 @@
+/* Modern Category List Styles */
+.category-list {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.category-list h3 {
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.category-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.category-list li a {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.1);
+}
+
+.category-list li a:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(79, 70, 229, 0.15);
+}
+
+.category-list li a.active {
+    background: var(--text-dark);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .category-list {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .category-list ul {
+        gap: 8px;
+    }
+    
+    .category-list li a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for active state */
+@keyframes categoryPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.category-list li a:active {
+    animation: categoryPulse 0.3s ease;
+}

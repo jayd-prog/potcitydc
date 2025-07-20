@@ -1,0 +1,189 @@
+/* VapePensDeal.css */
+
+/* Base styles (mobile-first) */
+.deals-page {
+  padding: 10px;
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+.deals-page h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 15px 0;
+}
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.deal-card {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.deal-card h2 {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.deal-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.savings {
+  font-size: 0.8rem;
+  color: #2a9d8f;
+  margin: 5px 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.product-card {
+  text-align: center;
+}
+
+.product-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.product-name {
+  font-size: 0.7rem;
+  margin: 3px 0;
+}
+
+.original-price {
+  font-size: 0.7rem;
+  text-decoration: line-through;
+  color: #999;
+}
+
+.deal-card button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.deal-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #0077b6;
+  text-decoration: none;
+}
+
+/* Desktop styles (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .deals-page {
+    max-width: 1200px;
+    padding: 20px;
+  }
+
+  .deals-page h1 {
+    font-size: 2.2rem;
+    margin: 25px 0;
+  }
+
+  .deals-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .deal-card {
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .deal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+
+  .deal-card h2 {
+    font-size: 1.3rem;
+    margin: 10px 0;
+  }
+
+  .deal-price {
+    font-size: 1.5rem;
+  }
+
+  .savings {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }
+
+  .product-card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .product-name {
+    font-size: 0.9rem;
+    margin: 5px 0;
+  }
+
+  .original-price {
+    font-size: 0.9rem;
+  }
+
+  .deal-card button {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .back-link {
+    font-size: 1.1rem;
+    margin-top: 30px;
+  }
+}
+
+/* Tablet styles (min-width: 768px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .deals-page {
+    max-width: 768px;
+    padding: 15px;
+  }
+
+  .deals-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .deal-card {
+    padding: 15px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}

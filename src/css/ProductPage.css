@@ -1,0 +1,166 @@
+/* Modern E-commerce Color Scheme */
+:root {
+  /* Primary Colors */
+  --primary: #4F46E5;  /* Vibrant purple-blue */
+  --primary-hover: #4338CA;
+  --primary-light: #EEF2FF;
+  
+  /* Secondary Colors */
+  --secondary: #10B981;  /* Fresh green */
+  --secondary-hover: #059669;
+  
+  /* Accent Colors */
+  --accent: #F59E0B;  /* Warm amber */
+  --accent-hover: #D97706;
+  
+  /* Neutral Colors */
+  --text-dark: #1F2937;
+  --text-medium: #4B5563;
+  --text-light: #6B7280;
+  --bg-light: #F9FAFB;
+  --border-light: #E5E7EB;
+  --white: #FFFFFF;
+  
+  /* Status Colors */
+  --success: #10B981;
+  --error: #EF4444;
+  --warning: #F59E0B;
+  --info: #3B82F6;
+}
+
+/* Apply the color scheme to your existing CSS */
+
+/* Product Container */
+.product-container {
+  background-color: var(--white);
+}
+
+/* Go Back Button */
+.go-back-button {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+}
+
+.go-back-button:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Product Image Container */
+.product-image-container {
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-light);
+}
+
+/* Text Colors */
+.product-title {
+  color: var(--text-dark);
+}
+
+.product-meta {
+  color: var(--text-light);
+}
+
+.product-description {
+  color: var(--text-medium);
+}
+
+/* Product Options */
+.product-select {
+  border: 1px solid var(--border-light);
+  background-color: var(--bg-light);
+}
+
+.product-select:hover {
+  border-color: var(--primary);
+}
+
+/* Pricing */
+.product-price {
+  color: var(--primary);
+}
+
+/* Stock Status */
+.product-in-stock {
+  color: var(--success);
+}
+
+.product-out-of-stock {
+  color: var(--error);
+}
+
+/* Add to Cart Button */
+.product-add-to-cart {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.product-add-to-cart:hover:not(:disabled) {
+  background: var(--primary-hover);
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.3);
+}
+
+.product-add-to-cart:disabled {
+  background: var(--text-light);
+}
+
+/* Not Found Message */
+.product-not-found {
+  color: var(--error);
+}
+
+/* Badges (for new additions) */
+.deal-badge {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.sale-badge {
+  background: var(--error);
+  color: var(--white);
+}
+
+.new-badge {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+/* Modern Shadow Effects */
+.product-image {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.product-add-to-cart {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Modern Border Radius */
+.product-image-container,
+.product-add-to-cart,
+.product-select {
+  border-radius: 10px;
+}
+
+/* Hover Effects */
+.product-image:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus States */
+.product-select:focus,
+.product-add-to-cart:focus {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  .product-container {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+  }
+}

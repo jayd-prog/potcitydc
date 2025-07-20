@@ -1,0 +1,70 @@
+.category-list {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.category-list h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.category-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Tight spacing between buttons */
+  justify-content: center; /* Center buttons horizontally */
+}
+
+.category-list li {
+  margin: 0;
+}
+
+.category-list a {
+  display: inline-block;
+  padding: 8px 16px; /* Compact padding */
+  background-color: #fff;
+  color: #007bff;
+  text-decoration: none;
+  border-radius: 20px; /* Pill-shaped buttons */
+  transition: all 0.2s ease;
+  border: 1px solid #007bff;
+  font-size: 0.9rem;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+.category-list a:hover {
+  background-color: #007bff;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Active/focus state */
+.category-list a:active,
+.category-list a:focus {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .category-list ul {
+    justify-content: flex-start; /* Align left on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .category-list a {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}
