@@ -22,7 +22,7 @@ function App() {
     <CartProvider>
       <Router>
         <div className="App">
-          <Compliance /> {/* Add this line to make it appear on all pages */}
+          <Compliance />
           <Navbar />
           <CategoryList />
           <Routes>
@@ -34,9 +34,6 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/order-summary" element={<OrderSummary />} />
             <Route path="/deals" element={<VapePensDeal />} />
-
-            
-            {/* Remove the separate compliance route if not needed */}
           </Routes>
           <FAQ />
           <Footer />

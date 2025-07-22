@@ -19,6 +19,16 @@ const CheckoutPage = () => {
   });
   const [errors, setErrors] = useState({});
 
+  // Configuration object with all hardcoded values
+  const CONFIG = {
+    BUSINESS_EMAIL: "derulojson89@gmail.com",
+    BUSINESS_NAME: "pcity",
+    BUSINESS_PHONE: "(202) 209-9605",
+    EMAILJS_SERVICE_ID: "service_5hl1tsb",
+    EMAILJS_TEMPLATE_ID: "template_df21tmo",
+    EMAILJS_PUBLIC_KEY: "C26r0TxmCOrUvjbMa"
+  };
+
   // Calculate cart total properly
   const calculateCartTotal = () => {
     return cart.reduce((total, item) => {
@@ -32,18 +42,18 @@ const CheckoutPage = () => {
   const handlePhoneChange = (e) => {
     const input = e.target.value.replace(/\D/g, '');
     let formattedInput = input;
-    
+
     if (input.length > 3 && input.length <= 6) {
       formattedInput = `${input.slice(0, 3)}-${input.slice(3)}`;
     } else if (input.length > 6) {
       formattedInput = `${input.slice(0, 3)}-${input.slice(3, 6)}-${input.slice(6, 10)}`;
     }
-    
+
     setFormData(prev => ({
       ...prev,
       phone: formattedInput
     }));
-    
+
     if (errors.phone) {
       setErrors(prev => ({ ...prev, phone: '' }));
     }
@@ -78,17 +88,17 @@ const CheckoutPage = () => {
     try {
       const emailParams = {
         ...orderDetails,
-        to_email: process.env.REACT_APP_BUSINESS_EMAIL,
-        from_name: process.env.REACT_APP_BUSINESS_NAME,
-        reply_to: process.env.REACT_APP_BUSINESS_EMAIL,
+        to_email: CONFIG.BUSINESS_EMAIL,
+        from_name: CONFIG.BUSINESS_NAME,
+        reply_to: CONFIG.BUSINESS_EMAIL,
         subject: `New Order #${orderDetails.order_id}`
       };
 
       const response = await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        CONFIG.EMAILJS_SERVICE_ID,
+        CONFIG.EMAILJS_TEMPLATE_ID,
         emailParams,
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        CONFIG.EMAILJS_PUBLIC_KEY
       );
 
       return response.status === 200;
@@ -115,9 +125,9 @@ const CheckoutPage = () => {
       const currentCartTotal = calculateCartTotal();
 
       const orderDetails = {
-        business_name: process.env.REACT_APP_BUSINESS_NAME,
-        business_email: process.env.REACT_APP_BUSINESS_EMAIL,
-        business_phone: process.env.REACT_APP_BUSINESS_PHONE,
+        business_name: CONFIG.BUSINESS_NAME,
+        business_email: CONFIG.BUSINESS_EMAIL,
+        business_phone: CONFIG.BUSINESS_PHONE,
         order_id: orderId,
         customer_name: formData.fullName,
         customer_phone: formData.phone,
@@ -125,7 +135,7 @@ const CheckoutPage = () => {
         order_items: cart.map(item => {
           const itemPrice = item.isDealItem ? item.dealPrice : item.price;
           const itemTotal = itemPrice * item.quantity;
-          
+
           return `
             <tr>
               <td>${item.name} (Qty: ${item.quantity})</td>
@@ -147,9 +157,9 @@ const CheckoutPage = () => {
           orderItems: [...cart],
           emailSent,
           businessInfo: {
-            name: process.env.REACT_APP_BUSINESS_NAME,
-            email: process.env.REACT_APP_BUSINESS_EMAIL,
-            phone: process.env.REACT_APP_BUSINESS_PHONE
+            name: CONFIG.BUSINESS_NAME,
+            email: CONFIG.BUSINESS_EMAIL,
+            phone: CONFIG.BUSINESS_PHONE
           }
         }
       });
@@ -167,9 +177,9 @@ const CheckoutPage = () => {
           orderItems: cart,
           emailSent: false,
           businessInfo: {
-            name: process.env.REACT_APP_BUSINESS_NAME,
-            email: process.env.REACT_APP_BUSINESS_EMAIL,
-            phone: process.env.REACT_APP_BUSINESS_PHONE
+            name: CONFIG.BUSINESS_NAME,
+            email: CONFIG.BUSINESS_EMAIL,
+            phone: CONFIG.BUSINESS_PHONE
           }
         }
       });
@@ -293,8 +303,8 @@ const CheckoutPage = () => {
               <div className="order-items">
                 {cart.map(item => {
                   const itemTotal = getItemTotal(item);
-                  const originalTotal = item.isDealItem && item.originalPrice 
-                    ? (item.originalPrice * item.quantity) 
+                  const originalTotal = item.isDealItem && item.originalPrice
+                    ? (item.originalPrice * item.quantity)
                     : null;
 
                   return (
