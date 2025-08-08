@@ -59,11 +59,19 @@ const CartPage = () => {
       price: 100
     },
     'edible-deal': { 
-      totalQuantity: 5, 
-      productsNeeded: 5,
+      totalQuantity: 4, 
+      productsNeeded: 4,
       category: 'Edibles',
-      description: 'Select 5 edibles products',
+      description: ' Selections can be updated via text or with staff assistance.',
       price: 100
+    },
+    'flower-edible-deal': {
+      totalQuantity: 1, 
+      productsNeeded: 1,
+      category: 'flower',
+      description: 'Edible selection can be updated via text or with staff assistance.',
+      price: 1000
+      
     },
     'flower-deal-2oz': { 
       totalQuantity: 2, 
@@ -100,6 +108,7 @@ const CartPage = () => {
     'desposable-deal': products.filter(p => p.category === 'Disposable Cart').slice(0, 14),
     'cartage-deal': products.filter(p => p.category === 'Cartages').slice(0, 14),
     'edible-deal': products.filter(p => p.category === 'Edibles').slice(0, 14),
+    'flower-edible-deal': products.filter(p => p.category === 'flower').slice(0, 14),
     'flower-deal-2oz': products.filter(p => p.category === 'flower').slice(0, 14),
     'flower-deal-4oz': products.filter(p => p.category === 'flower').slice(0, 14),
     'preroll-deal': products.filter(p => p.category === 'Prerolls').slice(0, 2),

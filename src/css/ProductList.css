@@ -1,13 +1,21 @@
 :root {
-  --primary: #4F46E5;       /* Vibrant purple-blue */
+  --primary: #4F46E5;
+  /* Vibrant purple-blue */
   --primary-dark: #4338CA;
-  --text-dark: #1F2937;     /* Dark gray */
-  --text-medium: #4B5563;   /* Medium gray */
-  --text-light: #6B7280;    /* Light gray */
-  --bg-light: #F9FAFB;      /* Light background */
-  --border-light: #E5E7EB;  /* Light border */
-  --white: #FFFFFF;         /* Pure white */
-  --success: #10B981;       /* Green for prices */
+  --text-dark: #1F2937;
+  /* Dark gray */
+  --text-medium: #4B5563;
+  /* Medium gray */
+  --text-light: #6B7280;
+  /* Light gray */
+  --bg-light: #F9FAFB;
+  /* Light background */
+  --border-light: #E5E7EB;
+  /* Light border */
+  --white: #FFFFFF;
+  /* Pure white */
+  --success: #10B981;
+  /* Green for prices */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -156,13 +164,48 @@
   z-index: 1;
 }
 
+/* Add these styles to your existing ProductList.css */
+
+.product-option-group {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.product-option-group label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.weight-select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.weight-select:hover {
+  border-color: #4F46E5;
+}
+
+.weight-select:focus {
+  outline: none;
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+
 /* Responsive Grid Adjustments */
 @media (min-width: 480px) {
   .products {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.25rem;
   }
-  
+
   .product img {
     height: 160px;
   }
@@ -173,13 +216,22 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
   }
-  
+
   .product-list {
     padding: 1.5rem;
   }
-  
+
   .product img {
     height: 180px;
+  }
+
+  .product-option-group {
+    margin: 0.3rem 0;
+  }
+
+  .weight-select {
+    padding: 0.4rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -188,11 +240,11 @@
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 2rem;
   }
-  
+
   .product-list {
     padding: 2rem;
   }
-  
+
   .product img {
     height: 200px;
   }
@@ -207,8 +259,13 @@
 }
 
 @keyframes skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Empty State */

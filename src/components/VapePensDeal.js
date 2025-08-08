@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
-import {products} from '../products';
+import { products } from '../products';
 import '../css/VapePensDeal.css';
 
 const VapePensDeal = () => {
@@ -10,8 +10,30 @@ const VapePensDeal = () => {
   // Deal data setup
   const deals = [
     {
+      id: 'flower-edible-deal',
+      name: '1oz Flower & 1 Edible',
+      category: 'bundle',
+      price: 100,
+      quantityText: '1oz flower & 1 edible',
+      products: [
+        ...products.filter(p => p.category === 'flower' && !p.isDeal).slice(0, 1),
+        ...products.filter(p => p.category === 'Edibles' && !p.isDeal).slice(0, 1)
+      ],
+      color: '#382a9dff',
+      isDeal: true
+    },
+    {
       id: 'desposable-deal',
-      name: '4 Disposable Carts',
+      name: '4 1g Disposable Carts',
+      category: 'Disposable Cart',
+      price: 120,
+      quantityText: '4 disposable carts',
+      products: products.filter(p => p.category === 'Disposable Cart' && !p.isDeal).slice(0, 2),
+      color: '#4cc9f0'
+    },
+    {
+      id: 'desposable-deal',
+      name: '4 3g Disposable Carts',
       category: 'Disposable Cart',
       price: 140,
       quantityText: '4 disposable carts',
@@ -25,11 +47,20 @@ const VapePensDeal = () => {
       price: 100,
       quantityText: '4 Cartages',
       products: products.filter(p => p.category === 'Cartages' && !p.isDeal).slice(0, 2),
-      color: '#4cc9f0'
+      color: '#a625f6ff'
+    },
+    {
+      id: 'cartage-deal',
+      name: '8 Cartages Deal',
+      category: 'Cartages',
+      price: 180,
+      quantityText: '4 Cartages',
+      products: products.filter(p => p.category === 'Cartages' && !p.isDeal).slice(0, 2),
+      color: '#a625f6ff'
     },
     {
       id: 'edible-deal',
-      name: '5 Edibles',
+      name: '6 Edibles',
       category: 'Edibles',
       price: 100,
       quantityText: '5 edibles',
@@ -99,18 +130,18 @@ const VapePensDeal = () => {
   return (
     <div className="deals-page">
       <h1>🔥 Hot Deals 🔥</h1>
-      
+
       <div className="deals-grid">
         {deals.map(deal => {
           const regularPrice = deal.products.reduce((sum, p) => sum + p.price, 0);
           const savings = regularPrice - deal.price;
-          
+
           return (
             <div key={deal.id} className="deal-card" style={{ borderTop: `4px solid ${deal.color}` }}>
               <h2>{deal.name}</h2>
               <div className="deal-price">${deal.price}</div>
               <div className="savings">Save ${savings}</div>
-              
+
               <div className="products-grid">
                 {deal.products.map(product => (
                   <div key={product.id} className="product-card">
@@ -120,8 +151,8 @@ const VapePensDeal = () => {
                   </div>
                 ))}
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => addDealToCart(deal)}
                 style={{ backgroundColor: deal.color }}
               >

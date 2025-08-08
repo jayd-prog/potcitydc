@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CartContext } from './CartContext';
-import {products} from '../products';
+import { products } from '../products';
 import '../css/ProductPage.css';
 
 const ProductPage = () => {
@@ -47,88 +47,106 @@ const ProductPage = () => {
                 onClick={() => navigate(-1)}
                 className="go-back-button"
             >
-                ← Go Back
+                ← Back to Products
             </button>
             
-            <div className="product-image-container">
-                <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="product-image"
-                    onError={(e) => {
-                        e.target.src = '/images/placeholder-product.jpg';
-                        e.target.className = 'product-image placeholder';
-                    }}
-                />
-            </div>
-            
-            <div className="product-details">
-                <h2 className="product-title">{product.name}</h2>
-                
-                <div className="product-meta">
-                    <p className="product-brand">Strain: {product.brand}</p>
-                    <p className="product-category">Category: {product.category}</p>
+            <div className="product-content">
+                <div className="product-image-container">
+                    <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="product-image"
+                        onError={(e) => {
+                            e.target.src = '/images/placeholder-product.jpg';
+                            e.target.className = 'product-image placeholder';
+                        }}
+                    />
                 </div>
                 
-                <p className="product-description">{product.description}</p>
-                
-                {isFlower && (
-                    <>
-                        <div className="product-option-group">
-                            <label className="product-label">Weight:</label>
-                            <select 
-                                value={selectedWeight}
-                                onChange={(e) => setSelectedWeight(e.target.value)}
-                                className="product-select"
-                            >
-                                <option value="ounce">Ounce (28g)</option>
-                                <option value="half">Half (14g)</option>
-                                <option value="quarter">Quarter (7g)</option>
-                                <option value="eighth">Eighth (3.5g)</option>
-                            </select>
+                <div className="product-details">
+                    <div className="product-header">
+                        <h1 className="product-title">{product.name}</h1>
+                        <div className="product-meta">
+                            <span className="product-brand">{product.brand}</span>
+                            <span className="product-category">{product.category}</span>
                         </div>
-                    </>
-                )}
-                
-                <div className="product-option-group">
-                    <label className="product-label">Quantity:</label>
-                    <select 
-                        value={quantity}
-                        onChange={(e) => setQuantity(parseInt(e.target.value))}
-                        className="product-select"
-                    >
-                        {[1, 2, 3, 4, 5].map(num => (
-                            <option key={num} value={num}>{num}</option>
-                        ))}
-                    </select>
-                </div>
-                
-                <div className="product-price-container">
-                    <p className="product-price">${currentPrice.toFixed(2)}</p>
-                    {isFlower && (
-                        <p className="product-price-breakdown">
-                            {quantity} × ${priceOptions[selectedWeight].toFixed(2)} {selectedWeight}
+                    </div>
+                    
+                    <p className="product-description">{product.description}</p>
+                    
+                    <div className="product-options">
+                        {isFlower && (
+                            <div className="product-option-group">
+                                <label className="product-label">Weight:</label>
+                                <div className="option-buttons">
+                                    {[
+                                        { value: 'ounce', label: 'Ounce (28g)' },
+                                        { value: 'half', label: 'Half (14g)' },
+                                        { value: 'quarter', label: 'Quarter (7g)' },
+                                        { value: 'eighth', label: 'Eighth (3.5g)' }
+                                    ].map(option => (
+                                        <button
+                                            key={option.value}
+                                            className={`option-button ${selectedWeight === option.value ? 'active' : ''}`}
+                                            onClick={() => setSelectedWeight(option.value)}
+                                        >
+                                            {option.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        
+                        <div className="product-option-group">
+                            <label className="product-label">Quantity:</label>
+                            <div className="quantity-selector">
+                                <button 
+                                    className="quantity-button"
+                                    onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                                    disabled={quantity <= 1}
+                                >
+                                    -
+                                </button>
+                                <span className="quantity-value">{quantity}</span>
+                                <button 
+                                    className="quantity-button"
+                                    onClick={() => setQuantity(q => Math.min(5, q + 1))}
+                                    disabled={quantity >= 5}
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="product-pricing">
+                        <div className="price-display">
+                            <span className="product-price">${currentPrice.toFixed(2)}</span>
+                            {isFlower && (
+                                <span className="price-unit">
+                                    {quantity} × ${priceOptions[selectedWeight].toFixed(2)}/{selectedWeight}
+                                </span>
+                            )}
+                        </div>
+                        
+                        <p className={`product-stock ${product.countInStock > 0 ? 'in-stock' : 'out-of-stock'}`}>
+                            {product.countInStock > 0 ? `In Stock (${product.countInStock})` : 'Out of Stock'}
                         </p>
-                    )}
+                    </div>
+                    
+                    <button 
+                        className="add-to-cart-button"
+                        disabled={product.countInStock <= 0}
+                        onClick={handleAddToCart}
+                    >
+                        {product.countInStock > 0 ? (
+                            <>
+                                <span>Add to Cart</span>
+                                <span>${currentPrice.toFixed(2)}</span>
+                            </>
+                        ) : 'Currently Unavailable'}
+                    </button>
                 </div>
-                
-                <p className="product-stock">
-                    {product.countInStock > 0 ? (
-                        <span className="product-in-stock">In Stock ({product.countInStock})</span>
-                    ) : (
-                        <span className="product-out-of-stock">Out of Stock</span>
-                    )}
-                </p>
-                
-                <button 
-                    className="product-add-to-cart"
-                    disabled={product.countInStock <= 0}
-                    onClick={handleAddToCart}
-                >
-                    {product.countInStock > 0 ? 
-                        `Add to Cart - $${currentPrice.toFixed(2)}` : 
-                        'Currently Unavailable'}
-                </button>
             </div>
         </div>
     );
