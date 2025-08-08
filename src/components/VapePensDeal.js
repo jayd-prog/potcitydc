@@ -35,7 +35,7 @@ const VapePensDeal = () => {
       id: 'desposable-deal',
       name: '4 3g Disposable Carts',
       category: 'Disposable Cart',
-      price: 140,
+      price: 150,
       quantityText: '4 disposable carts',
       products: products.filter(p => p.category === 'Disposable Cart' && !p.isDeal).slice(0, 2),
       color: '#4cc9f0'
